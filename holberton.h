@@ -13,5 +13,5 @@ void _puts(char *str);
 void print_number(int n);
 int _strlen(char *s);
 int _digits(int num);
-
+int print_num(int num);
 #endif

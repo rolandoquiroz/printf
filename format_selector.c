@@ -11,10 +11,8 @@
  *
  * Return: numbers of characters printed if successful.
  */
-
 int format_selector(char format, va_list list)
 {
-
 	int sum = 0;
 	char *string;
 	int num = 0;
@@ -24,36 +22,33 @@ int format_selector(char format, va_list list)
 	{
 		case 'c':
 		c = va_arg(list, int);
-		_putchar (c);
-		sum = 1;
+		_putchar (c), sum = 1;
 		break;
 		case 's':
 		string = va_arg(list, char *);
 		if (string == NULL)
 		{
-		_puts("(null)");
-		sum = 6;
+		_puts("(null)"), sum = 6;
 		break;
 		}
-		_puts(string);
-		sum = _strlen(string);		
+		_puts(string), sum = _strlen(string);
 		break;
-		case 'd':
-		case 'i':
+	case 'd': case 'i':
 		num = va_arg(list, int);
-		print_number(num);
-		sum = _digits(num);
+		if (num == 0)
+		{
+		_putchar('0'), sum = 1;
+		break;
+		}
+		sum = print_num(num);
 		break;
 		case '%':
-		_putchar('%');
-		sum = 1;
+		_putchar('%'), sum = 1;
 		break;
 		default:
 		if (format == '\0')
 		{
-		_putchar('%');
-		_putchar(format);
-		sum = 2;
+		_putchar('%'), _putchar(format), sum = 2;
 		break;
 		}
 	}
